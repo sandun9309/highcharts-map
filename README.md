@@ -2,14 +2,14 @@
 
 ![sample image](src/assets/screenshot/screenshot1.jpg)
 
-run below anguler command to import **Highcharts** and **Highcharts Map**
+run below anguler command to import `Highcharts` and `Highcharts Map`
 ```
 npm install highcharts-angular --save
 npm install highcharts --save
 npm i @highcharts/map-collection --save
 ```
 
-import **HighchartsChartModule** module in _app.module.ts file_
+import `HighchartsChartModule` module in **_app.module.ts file_**
 
 ``` javascript
 ...
