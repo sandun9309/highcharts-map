@@ -6,7 +6,7 @@ run below anguler command to import `Highcharts` and `Highcharts Map`
 ```
 npm install highcharts-angular --save
 npm install highcharts --save
-npm i @highcharts/map-collection --save
+npm install @highcharts/map-collection --save
 ```
 
 import `HighchartsChartModule` module in **_app.module.ts file_**
