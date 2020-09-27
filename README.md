@@ -1,8 +1,11 @@
-# Highcharts Map
+# Highcharts Map - Sri Lanka
 
 ![sample image](src/assets/screenshot/screenshot1.jpg)
 
-run below anguler command to import `Highcharts` and `Highcharts Map`
+#### Using this project I integrated `Highcharts Map`. Initially those values are hardcoded and in 5sec. timer data change in observable.
+
+run below angular command to import `Highcharts` and `Highcharts Map`
+
 ```
 npm install highcharts-angular --save
 npm install highcharts --save
