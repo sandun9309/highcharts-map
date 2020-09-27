@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as Highcharts from 'highcharts/highmaps';
 import {Options} from 'highcharts';
+import {DataService} from '../services/data.service';
 // @ts-ignore
-import * as sriLanka from '@highcharts/map-collection/countries/lk/lk-all.geo.json';
+import sriLanka from '@highcharts/map-collection/countries/lk/lk-all.geo.json';
+
 // import sriLanka from '../../assets/lk-all.geo.json';
 
 @Component({
@@ -10,7 +12,7 @@ import * as sriLanka from '@highcharts/map-collection/countries/lk/lk-all.geo.js
   templateUrl: './sri-lanka-map.component.html',
   styleUrls: ['./sri-lanka-map.component.css']
 })
-export class SriLankaMapComponent implements OnInit {
+export class SriLankaMapComponent implements OnInit, OnDestroy {
   mapTitle = 'Sri Lanka map Title';
   mapSubTitle = 'Sri Lanka map sub Title';
   seriesName = 'Series Name';
@@ -65,7 +67,10 @@ export class SriLankaMapComponent implements OnInit {
       enabled: true
     },
     colorAxis: {
-      min: 0
+      min: 0,
+      max: 1000,
+      minColor: '#ffffe0',
+      maxColor: '#db4551'
     },
     series: [
       {
@@ -73,7 +78,7 @@ export class SriLankaMapComponent implements OnInit {
         name: this.seriesName,
         states: {
           hover: {
-            color: '#da5593'
+            color: '#2c8bff'
           }
         },
         dataLabels: {
@@ -89,10 +94,45 @@ export class SriLankaMapComponent implements OnInit {
     },
   };
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
+
+    this.dataService.getChartData().subscribe(data => {
+      this.updateData(data);
+    });
+
+    setTimeout(() => {
+      this.dataService.updateChartData();
+    }, 5000);
+
   }
+
+  ngOnDestroy(): void {
+    if (this.dataService.getChartData() !== undefined) {
+      this.dataService.unsubscribeChartDataEventSubscription();
+    }
+  }
+
+  updateData(data): void {
+    this.chartOptions.series[0] = {
+      type: 'map',
+      name: this.seriesName,
+      states: {
+        hover: {
+          color: '#2c8bff'
+        }
+      },
+      dataLabels: {
+        enabled: true,
+        format: '{point.name}'
+      },
+      allAreas: false,
+      data: data as any
+    };
+    this.updateFlag = true;
+  }
+
 
 }
