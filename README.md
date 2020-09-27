@@ -24,7 +24,7 @@ at the moment map's name loaded from library json file. if you want to change di
 
 ``` javascript
 ...
-import * as sriLanka from '@highcharts/map-collection/countries/lk/lk-all.geo.json';
+import sriLanka from '@highcharts/map-collection/countries/lk/lk-all.geo.json';
 // import sriLanka from '../../assets/lk-all.geo.json';
 ```
 
